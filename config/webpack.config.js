@@ -5,20 +5,25 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const devMode = process.env.NODE_ENV !== 'production'
 
 const jsPath = path.resolve(__dirname, '../src/js')
-const getFiles = (p) => {
-  var res = {}
+
+var res = {}
+const getFiles = (p, d) => {
   var f = fs.readdirSync(p)
   f.forEach((e) => {
     e = path.join(p, e)
     var info = fs.statSync(e)
     if (info.isFile()) {
       var name = path.basename(e, '.js')
-      res[name] = e
+      d ? ( res[d +'\\'+ name] = e ) : ( res[name] = e )
+    }else{
+      var dir = e.substring(e.lastIndexOf('\\') + 1, e.length)
+      getFiles(p + '\\' + dir, dir)
     }
   })
   return res
 }
-
+//console.log(getFiles(jsPath))
+//return 
 const config = {
   entry: getFiles(jsPath),
   output: {
