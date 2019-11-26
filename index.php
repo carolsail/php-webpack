@@ -15,5 +15,6 @@ include 'map.php'; // 导入assets-map文件
   <h1>php webpack 插件测试</h1>
   <?php insertJS('index') ?>
   <?php insertJS('admin/test') ?>
+  <?php insertJS('admin/sub/sub') ?>
 </body>
 </html>

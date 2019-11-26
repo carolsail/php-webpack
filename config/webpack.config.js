@@ -17,12 +17,13 @@ const getFiles = (p, d) => {
       d ? ( res[d +'\\'+ name] = e ) : ( res[name] = e )
     }else{
       var dir = e.substring(e.lastIndexOf('\\') + 1, e.length)
-      getFiles(p + '\\' + dir, dir)
+      var dname = d ? ( d + '\\' + dir ) : dir
+      getFiles(p + '\\' + dir, dname)
     }
   })
   return res
 }
-//console.log(getFiles(jsPath))
+// console.log(getFiles(jsPath))
 //return 
 const config = {
   entry: getFiles(jsPath),

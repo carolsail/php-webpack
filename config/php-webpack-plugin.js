@@ -40,8 +40,8 @@ plugin.prototype.apply = (compiler) => {
           c.push(a)
       });
       if (j.length > 0)
-        //反斜杠转斜杆
-        k = k.replace("\\", "\/")
+        //所有反斜杠转斜杆
+        k = k.split("\\").join("\/")
         js[k] = j
       if (c.length > 0)
         css[k] = c
